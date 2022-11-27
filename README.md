@@ -1,31 +1,14 @@
-<include a CircleCI status badge, here>
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/nhaus12/udacity-project-ml-microservice-kubernetes/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/nhaus12/udacity-project-ml-microservice-kubernetes/tree/main)
 
 ## Project Overview
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
-
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
-
-### Project Tasks
-
-Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
-* Test your project code using linting
-* Complete a Dockerfile to containerize this application
-* Deploy your containerized application using Docker and make a prediction
-* Improve the log statements in the source code for this application
-* Configure Kubernetes and create a Kubernetes cluster
-* Deploy a container using Kubernetes and make a prediction
-* Upload a complete Github repo with CircleCI to indicate that your code has been tested
-
-You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
-
-**The final implementation of the project will showcase your abilities to operationalize production microservices.**
+This project showcases the operationalisation of a microservice, namely: a Python flask app. The app generates predictions about housing prices based on several input variables (e.g. average rooms in a home) via API calls using a pre-trained model. 
 
 ---
 
 ## Setup the Environment
 
-* Create a virtualenv with Python 3.7 and activate it. Refer to this link for help on specifying the Python version in the virtualenv. 
+* Create a virtualenv with Python 3.7 and activate it
 ```bash
 python3 -m pip install --user virtualenv
 # You should have Python 3.7 available in your host. 
@@ -41,10 +24,17 @@ source .devops/bin/activate
 1. Standalone:  `python app.py`
 2. Run in Docker:  `./run_docker.sh`
 3. Run in Kubernetes:  `./run_kubernetes.sh`
+4. Run example API call: `./make_prediction.sh`
 
-### Kubernetes Steps
+---
 
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
+## Repository directories and files
+
+* `model_data` contains the data (.csv) file used to train the model used in the microservice
+* `output_txt_files` contains two text files with command line output showing Docker and Kubernetes output related to the deployed microservice
+* `app.py` is the source Python file for the (flask) microservice
+* `make_prediction.sh` is a shell script which makes an API call to the microservice using pre-determined input values
+* `requirements.txt` contains the Python dependencies needed to run `app.py`
+* `run_docker.sh` builds, deploys, and runs the microservice as a Docker container
+* `run_kubernetes.sh` deploys and runs the microservice via a Kubernetes cluster
+* `upload_docker.sh` uploads the Docker file (built by running `run_docker.sh`) to Dockerhub
